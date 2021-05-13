@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5374123ef219c5f40be513316fb49bab, type: 3}
+  m_Name: BB-102
+  m_EditorClassIdentifier: 
+  name: BB-102
+  description: Small asteroid.
+  size: Small.
+  climate: N/A
+  color: Gray.
+  sprite: {fileID: 21300000, guid: 9205aad137551654a8fee770404e0797, type: 3}
+  population: 0
