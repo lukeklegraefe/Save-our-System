@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 606fbf474d70291478d9faa1eb8e5889, type: 3}
-  m_Name: p_earth
+  m_Name: p_tech
   m_EditorClassIdentifier: 
-  name: Earth
-  description: Humans.
-  size: Medium.
-  climate: Temperate.
-  color: Blue
-  sprite: {fileID: 21300000, guid: 54d6424d2b23f3d4085e4c15990827a5, type: 3}
-  population: 10000
+  name: Tech
+  description: Crypto
+  size: Large
+  climate: Electric...?
+  color: Cyan
+  sprite: {fileID: 21300000, guid: bf2385b7924dd9246abb356e13e8487b, type: 3}
+  population: 1000
   pDisplay: {fileID: 0}

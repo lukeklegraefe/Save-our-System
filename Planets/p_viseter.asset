@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 606fbf474d70291478d9faa1eb8e5889, type: 3}
-  m_Name: p_earth
+  m_Name: p_viseter
   m_EditorClassIdentifier: 
-  name: Earth
-  description: Humans.
-  size: Medium.
-  climate: Temperate.
-  color: Blue
-  sprite: {fileID: 21300000, guid: 54d6424d2b23f3d4085e4c15990827a5, type: 3}
-  population: 10000
+  name: Viseter
+  description: No clue
+  size: Its gassy
+  climate: Not liquid or solid.
+  color: Brown
+  sprite: {fileID: 21300000, guid: 81a2f74026b39eb4eb6e011ad41327aa, type: 3}
+  population: 0
   pDisplay: {fileID: 0}
