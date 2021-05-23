@@ -5,43 +5,77 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     public Camera c;
-    public bool ZoomActive;
-    public float Speed;
-    public float spd;
-    public Vector3 tempPos;
+    public CalculationController calcController;
+    public GameObject focus;
+
+    public bool zoomActive;
+    public float panSpeed;
+    public float zoomSpeed;
+    public float camDistance;
 
     private Vector3 start;
     private Vector3 des;
-    public float fraction = 0;
-
-    public GameObject p;
-    public GameObject b;
+    private float fraction = 0;
 
     void Start() {
         c = Camera.main;
         start = new Vector3(c.transform.position.x, c.transform.position.y, c.transform.position.z);
-        des = new Vector3(p.transform.position.x, p.transform.position.y, c.transform.position.z);
+        des = new Vector3(focus.transform.position.x, focus.transform.position.y, c.transform.position.z);
     }
 
     void Update() {
-        des = new Vector3(p.transform.position.x, p.transform.position.y, c.transform.position.z);
-        if (ZoomActive) {
-            if (fraction < 1) {
-                fraction += Time.deltaTime * Speed;
-                c.transform.position = Vector3.Lerp(start, des, fraction);
-                c.orthographicSize = Mathf.Lerp(c.orthographicSize, 200, spd);
+        des = new Vector3(focus.transform.position.x, focus.transform.position.y, c.transform.position.z);
+        //ASTEROID
+        if (focus.gameObject.CompareTag("Asteroid")) {
+            if(zoomActive) {
+                if(fraction < 1) {
+                    fraction += Time.deltaTime * panSpeed;
+                    c.transform.position = Vector3.Lerp(start, des, fraction);
+                    c.orthographicSize = Mathf.MoveTowards(c.orthographicSize, 150, zoomSpeed * 1.4f);
+                }
+                if(c.orthographicSize < 170) {
+                    c.transform.position = focus.transform.position + new Vector3(camDistance, 5, -2);
+                }
+            }
+            else {
+                if (fraction > 1) {
+                    fraction = 0;
+                }
+                else if (c.transform.position != start) {
+                    fraction += Time.deltaTime * panSpeed;
+                    c.transform.position = Vector3.Lerp(des, start, fraction);
+                    c.orthographicSize = Mathf.MoveTowards(c.orthographicSize, 320, zoomSpeed * 1.4f);
+                }
             }
         }
+        //PLANET
         else {
-            if (fraction > 1) {
-                fraction = 0;
+            if (zoomActive) {
+                if (fraction < 1) {
+                    fraction += Time.deltaTime * panSpeed;
+                    c.transform.position = Vector3.Lerp(start, des, fraction);
+                    c.orthographicSize = Mathf.MoveTowards(c.orthographicSize, 200, zoomSpeed);
+                }
             }
-            else if (c.transform.position != start){
-                fraction += Time.deltaTime * Speed;
-                c.transform.position = Vector3.Lerp(des, start, fraction);
-                c.orthographicSize = Mathf.Lerp(c.orthographicSize, 320, spd);
+            else {
+                if (fraction > 1) {
+                    fraction = 0;
+                }
+                else if (c.transform.position != start) {
+                    fraction += Time.deltaTime * panSpeed;
+                    c.transform.position = Vector3.Lerp(des, start, fraction);
+                    c.orthographicSize = Mathf.MoveTowards(c.orthographicSize, 320, zoomSpeed);
+                }
             }
         }
-              
+    }
+
+    public void punish() {
+        zoomActive = false;
+        calcController.addTotalPunished(focus);
+    }
+
+    public void spared() {
+        zoomActive = false;
     }
 }

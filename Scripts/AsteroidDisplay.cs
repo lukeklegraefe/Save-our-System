@@ -31,18 +31,29 @@ public class AsteroidDisplay : MonoBehaviour
 
         asteroid.Print();
 
-        a_button.onClick.AddListener(displayInfo);
+        if (a_button.gameObject.CompareTag("Asteroid")){
+            a_button.onClick.AddListener(displayInfo);
+        }
+    }
+
+    void Update() {
+        if (zoom.zoomActive && zoom.focus != this.gameObject) {
+            a_button.enabled = false;
+        }
+        else {
+            a_button.enabled = true;
+        }
     }
 
     void displayInfo() {
-        zoom.p = a_obj;
+        zoom.focus = a_obj;
         if (display) {
             display = false;
-            zoom.ZoomActive = display;
+            zoom.zoomActive = display;
         }
         else {
             display = true;
-            zoom.ZoomActive = display;
+            zoom.zoomActive = display;
         }
         nameText.gameObject.SetActive(display);
         descriptionText.gameObject.SetActive(display);
@@ -50,17 +61,8 @@ public class AsteroidDisplay : MonoBehaviour
         infoImage.gameObject.SetActive(display);
 
         switch (asteroid.color) {
-            case "Blue":
-                infoImage.color = Color.blue;
-                break;
-            case "Red":
-                infoImage.color = Color.red;
-                break;
-            case "Green":
-                infoImage.color = Color.green;
-                break;
-            case "Purple":
-                infoImage.color = Color.magenta;
+            case "Brown":
+                infoImage.color = Color.gray;
                 break;
         }
 

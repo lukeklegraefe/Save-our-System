@@ -10,14 +10,15 @@ public class PlanetDisplay : MonoBehaviour
     public Text nameText;
     public Text descriptionText;
     public Text climateText;
+    public Text populationText;
 
     public Image spriteImage;
     public Image infoImage;
 
     public Button p_button;
-
     public GameObject p_obj;
-    private bool display = false;
+
+    public bool display = false;
 
     public Camera c;
     public CameraZoom zoom;
@@ -28,27 +29,38 @@ public class PlanetDisplay : MonoBehaviour
         nameText.text = "Name: " + planet.name;
         descriptionText.text = "Info: " + planet.description;
         climateText.text = "Climate: " + planet.climate;
+        populationText.text = "Population: " + planet.population;
         spriteImage.sprite = planet.sprite;
 
-        planet.Print();
+        planet.print();
 
         p_button.onClick.AddListener(displayInfo);
     }
-    
-    void displayInfo()
+
+    void Update() {
+        if (zoom.zoomActive && zoom.focus != this.gameObject) {
+            p_button.enabled = false;
+        }
+        else {
+            p_button.enabled = true;
+        }
+    }
+
+    public void displayInfo()
     {
-        zoom.p = p_obj;
+        zoom.focus = p_obj;
         if (display){
             display = false;
-            zoom.ZoomActive = display;
+            zoom.zoomActive = display;
         }
         else{
             display = true;
-            zoom.ZoomActive = display;
+            zoom.zoomActive = display;
         }
         nameText.gameObject.SetActive(display);
         descriptionText.gameObject.SetActive(display);
         climateText.gameObject.SetActive(display);
+        populationText.gameObject.SetActive(display);
         infoImage.gameObject.SetActive(display);
 
         switch (planet.color) {
@@ -62,6 +74,15 @@ public class PlanetDisplay : MonoBehaviour
                 infoImage.color = Color.green;
                 break;
             case "Purple":
+                infoImage.color = Color.magenta;
+                break;
+            case "Brown":
+                infoImage.color = Color.black;
+                break;
+            case "Cyan":
+                infoImage.color = Color.cyan;
+                break;
+            case "Pink":
                 infoImage.color = Color.magenta;
                 break;
         }

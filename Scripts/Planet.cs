@@ -15,7 +15,10 @@ public class Planet : ScriptableObject
 
     public int population;
 
-    public void Print() {
+    public PlanetDisplay pDisplay;
+
+    public void print() {
         Debug.Log(name + ": " + description + "\nPopulation: " + population);
     }
+
 }
