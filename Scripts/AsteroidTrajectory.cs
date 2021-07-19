@@ -9,8 +9,8 @@ public class AsteroidTrajectory : MonoBehaviour
 
     void Start()
     {
-        traj.x = -350;
-        traj.y = -100;
+        traj.x = Random.Range(-400, 500);
+        traj.x = Random.Range(-200, 600);
     }
 
     void Update()

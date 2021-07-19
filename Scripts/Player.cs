@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(totalPunished > 100) {
+        if(totalPunished > 1000) {
             Debug.Log("Bad End");
         }
     }

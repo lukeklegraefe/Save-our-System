@@ -17,6 +17,8 @@ public class CameraZoom : MonoBehaviour
     private Vector3 des;
     private float fraction = 0;
 
+    public SFX sfx;
+
     void Start() {
         c = Camera.main;
         start = new Vector3(c.transform.position.x, c.transform.position.y, c.transform.position.z);
@@ -32,8 +34,9 @@ public class CameraZoom : MonoBehaviour
                     fraction += Time.deltaTime * panSpeed;
                     c.transform.position = Vector3.Lerp(start, des, fraction);
                     c.orthographicSize = Mathf.MoveTowards(c.orthographicSize, 150, zoomSpeed * 1.4f);
+                    sfx.zoomIn();
                 }
-                if(c.orthographicSize < 170) {
+                if(c.orthographicSize < 250) {
                     c.transform.position = focus.transform.position + new Vector3(camDistance, 5, -2);
                 }
             }
@@ -45,6 +48,7 @@ public class CameraZoom : MonoBehaviour
                     fraction += Time.deltaTime * panSpeed;
                     c.transform.position = Vector3.Lerp(des, start, fraction);
                     c.orthographicSize = Mathf.MoveTowards(c.orthographicSize, 320, zoomSpeed * 1.4f);
+                    sfx.zoomOut();
                 }
             }
         }
@@ -55,6 +59,7 @@ public class CameraZoom : MonoBehaviour
                     fraction += Time.deltaTime * panSpeed;
                     c.transform.position = Vector3.Lerp(start, des, fraction);
                     c.orthographicSize = Mathf.MoveTowards(c.orthographicSize, 200, zoomSpeed);
+                    sfx.zoomIn();
                 }
             }
             else {
@@ -65,6 +70,7 @@ public class CameraZoom : MonoBehaviour
                     fraction += Time.deltaTime * panSpeed;
                     c.transform.position = Vector3.Lerp(des, start, fraction);
                     c.orthographicSize = Mathf.MoveTowards(c.orthographicSize, 320, zoomSpeed);
+                    sfx.zoomOut();
                 }
             }
         }

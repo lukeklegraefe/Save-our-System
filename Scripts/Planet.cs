@@ -10,6 +10,7 @@ public class Planet : ScriptableObject
     public string size;
     public string climate;
     public string color;
+    public string species;
 
     public Sprite sprite;
 

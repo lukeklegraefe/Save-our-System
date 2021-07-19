@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour {
     public Canvas canvas;
     public bool loadNextLevel;
 
+    Scene activeScene;
+
     void Start() {
         canvas.sortingOrder = -1;
     }
@@ -31,7 +33,7 @@ public class UIController : MonoBehaviour {
 
     public IEnumerator FadeOut(bool fade = true, int fadeSpeed = 1) {
         particleSystem.Stop();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(4);
         transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         Color objectColor = blackOut.GetComponent<Image>().color;
         float fadeAmount;
@@ -54,6 +56,24 @@ public class UIController : MonoBehaviour {
                 yield return null;
             }
         }
-        SceneManager.LoadScene("Level2");
+        activeScene = SceneManager.GetActiveScene();
+        switch (activeScene.name) {
+            case "Main":
+                SceneManager.LoadScene("Level2");
+                break;
+            case "Level2":
+                SceneManager.LoadScene("Level3");
+                break;
+            case "Level3":
+                SceneManager.LoadScene("Level4");
+                break;
+            case "Level4":
+                SceneManager.LoadScene("Level5");
+                break;
+            case "Level5":
+                Application.Quit();
+                break;
+        }
+
     }
 }

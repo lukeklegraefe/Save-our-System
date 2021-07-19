@@ -8,6 +8,7 @@ public class PlanetHandler : MonoBehaviour
     public CameraZoom cam;
     public PlanetDisplay focusDisplay;
     public AsteroidDisplay asteroidDisplay;
+    public SFX sfx;
     public bool transition;
 
     void Start() {
@@ -21,12 +22,14 @@ public class PlanetHandler : MonoBehaviour
     }
 
     public void punish() {
+        sfx.destroyPlanet();
         cam.focus.SetActive(false);
         cam.punish();
         transition = true;
     }
 
     public void spare() {
+        sfx.buttonPress();
         cam.spared();
         if (cam.focus.gameObject.CompareTag("Asteroid")) {
             asteroidDisplay = cam.focus.GetComponent<AsteroidDisplay>();

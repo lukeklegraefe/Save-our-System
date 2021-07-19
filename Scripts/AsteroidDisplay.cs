@@ -27,7 +27,7 @@ public class AsteroidDisplay : MonoBehaviour
         nameText.text = "Name: " + asteroid.name;
         descriptionText.text = "Info: " + asteroid.description;
         climateText.text = "Climate: " + asteroid.climate;
-        spriteImage.sprite = asteroid.sprite;
+        //spriteImage.sprite = asteroid.sprite;
 
         asteroid.Print();
 
@@ -45,7 +45,7 @@ public class AsteroidDisplay : MonoBehaviour
         }
     }
 
-    void displayInfo() {
+    public void displayInfo() {
         zoom.focus = a_obj;
         if (display) {
             display = false;

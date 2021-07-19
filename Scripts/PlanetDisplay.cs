@@ -10,13 +10,18 @@ public class PlanetDisplay : MonoBehaviour
     public Text nameText;
     public Text descriptionText;
     public Text climateText;
+    public Text speciesText;
     public Text populationText;
 
     public Image spriteImage;
     public Image infoImage;
 
+    public Animator anim;
+
     public Button p_button;
     public GameObject p_obj;
+
+    public SFX sfx;
 
     public bool display = false;
 
@@ -29,6 +34,7 @@ public class PlanetDisplay : MonoBehaviour
         nameText.text = "Name: " + planet.name;
         descriptionText.text = "Info: " + planet.description;
         climateText.text = "Climate: " + planet.climate;
+        speciesText.text = "Species: " + planet.species;
         populationText.text = "Population: " + planet.population;
         spriteImage.sprite = planet.sprite;
 
@@ -60,6 +66,7 @@ public class PlanetDisplay : MonoBehaviour
         nameText.gameObject.SetActive(display);
         descriptionText.gameObject.SetActive(display);
         climateText.gameObject.SetActive(display);
+        speciesText.gameObject.SetActive(display);
         populationText.gameObject.SetActive(display);
         infoImage.gameObject.SetActive(display);
 
